@@ -17,7 +17,7 @@ public class DashaMap1 implements HashMapX {
         }
     }
 
-    private Character HashFunctionOne(String input) {
+    public Character HashFunctionOne(String input) {
         String lower = input.toLowerCase();
         if (input.length() > 0) {
             return lower.charAt(0);
@@ -40,12 +40,14 @@ public class DashaMap1 implements HashMapX {
     }
 
     @Override
-    public String get(String key) {
+    public int get(String key) {
         index = HashFunctionOne(key) - 'a';
+        int innerListIndex = 0;
         if (array[index].contains(key)) {
-            return key;
+            innerListIndex = array[index].find(key);
+            return array[index].get(innerListIndex).value;
         }
-        return null;
+        return -1;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class DashaMap1 implements HashMapX {
         long size = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i].isEmpty()) {
-                continue;
+
             }
             else {
                 size += array[i].size();
@@ -74,6 +76,10 @@ public class DashaMap1 implements HashMapX {
 
     @Override
     public boolean bucketSize(String key) {
+        index = HashFunctionOne(key) - 'a';
+        if (array[index].contains(key)) {
+            return true;
+        }
         return false;
     }
 }

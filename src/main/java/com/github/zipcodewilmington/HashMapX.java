@@ -9,7 +9,7 @@ public interface HashMapX {
     // fundamentals
     void set(String key, int value);
     String delete(String key);
-    String get(String key);
+    int get(String key);
     boolean isEmpty();
     long size();
 
